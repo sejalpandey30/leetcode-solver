@@ -1,0 +1,47 @@
+#Day2
+Question: iven a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
+
+You can use each character in text at most once. Return the maximum number of instances that can be formed.
+
+Example 1:
+Input: text = "nlaebolko"
+Output: 1
+
+Example 2:
+Input: text = "loonbalxballpoon"
+Output: 2
+
+Example 3:
+Input: text = "leetcode"
+Output: 0
+
+Constraints:
+
+1 <= text.length <= 104
+text consists of lower case English letters only.
+
+Approach
+Here we first find out the frequency of the alphabet from the given string into this word.
+and return the minimum number of times this get returned.
+
+class Solution
+{
+    public int maxNumberOfBalloons(String text) 
+    {
+        // we have to form instances of word "balloon" from the text
+        //String alpha = "balloon";
+        //we need to find the frequency of each alphabet of each of instances.
+        int freq[] = new int[26];
+        for( char ch : text.toCharArray())
+            freq[ch-'a']++;
+       // how many balloon can we form
+       int b=freq['b'-'a'];
+       int a= freq['a'-'a'];
+       int l= freq['l'-'a']/2;
+       int o= freq['o'-'a']/2;
+       int n=freq['n'-'a'];
+
+       return Math.min(Math.min(Math.min(b,a),Math.min(l,o)),n);
+   
+    }
+}
