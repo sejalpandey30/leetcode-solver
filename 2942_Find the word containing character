@@ -1,0 +1,64 @@
+Question
+ou are given a 0-indexed array of strings words and a character x.
+
+Return an array of indices representing the words that contain the character x.
+
+Note that the returned array may be in any order.
+
+ 
+
+Example 1:
+
+Input: words = ["leet","code"], x = "e"
+Output: [0,1]
+Explanation: "e" occurs in both words: "leet", and "code". Hence, we return indices 0 and 1.
+Example 2:
+
+Input: words = ["abc","bcd","aaaa","cbc"], x = "a"
+Output: [0,2]
+Explanation: "a" occurs in "abc", and "aaaa". Hence, we return indices 0 and 2.
+Example 3:
+
+Input: words = ["abc","bcd","aaaa","cbc"], x = "z"
+Output: []
+Explanation: "z" does not occur in any of the words. Hence, we return an empty array.
+ 
+
+Constraints:
+
+1 <= words.length <= 50
+1 <= words[i].length <= 50
+x is a lowercase English letter.
+words[i] consists only of lowercase English letters.
+
+Solution
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char * mergeAlternately(char * word1, char * word2)
+{
+    int len1= strlen(word1);
+    int len2 = strlen(word2);
+    char *newword = (char*)malloc((len1+len2+1)*sizeof(char));
+    int i=0,k=0;
+
+    while(i<len1 && i<len2)
+    {
+    newword[k++]=word1[i];
+    newword[k++]=word2[i];
+    i++;
+    }
+    while(i<len1)
+    {
+        newword[k++]=word1[i];
+        i++;
+    }
+    while(i<len2)
+    {
+        newword[k++]= word2[i];
+        i++;
+    }
+    newword[k]='\0';
+    return newword;
+}
